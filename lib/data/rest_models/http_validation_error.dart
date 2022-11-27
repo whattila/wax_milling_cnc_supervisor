@@ -1,4 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:wax_milling_cnc_supervisor/data/rest_models/validation_error.dart';
+
+part 'http_validation_error.g.dart';
 
 @JsonSerializable()
 class HTTPValidationError {

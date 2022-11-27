@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wax_milling_cnc_supervisor/data/cnc_service_interface.dart';
-import 'package:wax_milling_cnc_supervisor/data/cnc_service_interface.dart';
 
 import '../../../models/machine.dart';
 import 'edit_machine_event.dart';
@@ -43,6 +42,39 @@ class EditMachineBloc extends Bloc<EditMachineEvent, EditMachineState> {
       MachineSaved event,
       Emitter<EditMachineState> emit,
       ) async {
-    // TODO: do this, partly based on EditTodo from the example, but also on what we need here
+    emit(state.copyWith(status: EditStatus.loading));
+    final machine = Machine(
+        id: state.initialMachine?.id ?? -1,
+        isWorking: state.initialMachine?.isWorking ?? false,
+        isActive: state.isActive,
+        machineDescription: event.machineDescription,
+        activationDate: state.initialMachine?.activationDate,
+        toolCondition: state.toolCondition,
+        toolConditionPredicted: state.initialMachine?.toolConditionPredicted ?? WornType.unworn,
+        machineCode: event.machineCode,
+    );
+
+    if (state.isNewMachine) {
+      if (state.isActive) {
+        _cncServiceInterface.activateMachine(machine);
+      }
+    }
+    else {
+      if (state.isActive != state.initialMachine!.isActive) {
+        if (state.isActive) {
+          _cncServiceInterface.activateMachine(machine);
+        }
+        else {
+          _cncServiceInterface.deactivateMachine(machine);
+        }
+      }
+    }
+
+    try {
+      await _cncServiceInterface.createMachine(machine);
+      emit(state.copyWith(status: EditStatus.success));
+    } catch (e) {
+      emit(state.copyWith(status: EditStatus.failure));
+    }
   }
 }

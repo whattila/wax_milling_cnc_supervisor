@@ -29,7 +29,6 @@ class ToolConditionChanged extends EditMachineEvent {
 class MachineSaved extends EditMachineEvent {
   const MachineSaved({required this.machineCode, required this.machineDescription});
 
-  // TODO: can machineCode be modified after creation
   final String machineCode;
   final String machineDescription;
 

@@ -1,6 +1,8 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:wax_milling_cnc_supervisor/data/rest_models/machine_base.dart';
 
+part 'operation_base.g.dart';
+
 @JsonSerializable()
 class OperationBase {
   final int id;
@@ -10,8 +12,8 @@ class OperationBase {
   final double operation_pression;
   final String? operation_start;
   final String? operation_end;
-  // TODO: ha null, a modelben false
   final bool? operation_finished;
+  final bool? operation_finished_prediction;
 
   const OperationBase({
     required this.id,
@@ -21,7 +23,8 @@ class OperationBase {
     required this.operation_pression,
     this.operation_start,
     this.operation_end,
-    this.operation_finished
+    this.operation_finished,
+    this.operation_finished_prediction
   });
 
   factory OperationBase.fromJson(Map<String, dynamic> json) => _$OperationBaseFromJson(json);

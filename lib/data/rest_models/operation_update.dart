@@ -1,6 +1,8 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:wax_milling_cnc_supervisor/data/rest_models/machine_base.dart';
 
+part 'operation_update.g.dart';
+
 @JsonSerializable()
 class OperationUpdate {
   final int id;

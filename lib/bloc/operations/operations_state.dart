@@ -8,18 +8,15 @@ class OperationsState extends Equatable {
   const OperationsState({
     this.operations = const[],
     this.status = OperationsStatus.initial,
-    this.filter = const OperationsFilter.initial()
   });
 
   final List<Operation> operations;
   final OperationsStatus status;
-  final OperationsFilter filter;
+  // TODO: ha teszünk be filtert, azzal kapcsolatban nézzük meg a MachinesState-et
 
-  Iterable<Operation> get filteredOperations => filter.applyAll(operations);
-
-  OperationsState copyWith({List<Operation>? operations, OperationsStatus? status, OperationsFilter? filter}) =>
-      OperationsState(operations: operations ?? this.operations, status: status ?? this.status, filter: filter ?? this.filter);
+  OperationsState copyWith({List<Operation>? operations, OperationsStatus? status}) =>
+      OperationsState(operations: operations ?? this.operations, status: status ?? this.status);
 
   @override
-  List<Object?> get props => [operations, status, filter];
+  List<Object?> get props => [operations, status];
 }

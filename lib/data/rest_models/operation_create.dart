@@ -2,6 +2,8 @@ import 'package:json_annotation/json_annotation.dart';
 
 import 'machine_base.dart';
 
+part 'operation_create.g.dart';
+
 @JsonSerializable()
 class OperationCreate {
   final String operation_code;

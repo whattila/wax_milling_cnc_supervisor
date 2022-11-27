@@ -1,5 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
+part 'validation_error.g.dart';
+
 @JsonSerializable()
 class ValidationError {
   final List<dynamic> loc; // TODO: ez mi akar lenni?

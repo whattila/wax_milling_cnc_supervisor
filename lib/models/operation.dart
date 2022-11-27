@@ -11,6 +11,7 @@ class Operation extends Equatable {
   final DateTime? operationStart;
   final DateTime? operationEnd;
   final bool operationFinished;
+  final bool operationFinishedPrediction;
 
   const Operation ({
     required this.id,
@@ -18,9 +19,10 @@ class Operation extends Equatable {
     required this.machineId,
     required this.cuttingVelocity,
     required this.operationPression,
-    required this.operationStart,
-    required this.operationEnd,
-    required this.operationFinished
+    this.operationStart,
+    this.operationEnd,
+    required this.operationFinished,
+    required this.operationFinishedPrediction
   });
 
   Operation.fromOperationBase(OperationBase operationBase)
@@ -32,10 +34,21 @@ class Operation extends Equatable {
           operationPression: operationBase.operation_pression,
           operationStart: operationBase.operation_start != null ? DateTime.tryParse(operationBase.operation_start!) : null,
           operationEnd: operationBase.operation_end != null ? DateTime.tryParse(operationBase.operation_end!) : null,
-          operationFinished: operationBase.operation_finished ?? false
+          operationFinished: operationBase.operation_finished ?? false,
+          operationFinishedPrediction: operationBase.operation_finished_prediction ?? true
         );
 
   @override
-  List<Object?> get props => [id, operationCode, machineId, cuttingVelocity, operationPression, operationStart, operationEnd, operationFinished];
-
+  List<Object?> get props =>
+      [
+        id,
+        operationCode,
+        machineId,
+        cuttingVelocity,
+        operationPression,
+        operationStart,
+        operationEnd,
+        operationFinished,
+        operationFinishedPrediction
+      ];
 }

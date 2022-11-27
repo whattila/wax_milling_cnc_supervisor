@@ -23,10 +23,10 @@ class OperationDeleted extends OperationsEvent {
 }
 
 class OperationsFilterChanged extends OperationsEvent {
-  const OperationsFilterChanged(this.filter);
+  const OperationsFilterChanged();
 
-  final OperationsFilter filter;
+  // TODO: ha felveszek valami propertyt, adjuk hozzá a konstruktorban és a propsban
 
   @override
-  List<Object> get props => [filter];
+  List<Object> get props => [];
 }

@@ -46,6 +46,6 @@ class OperationsBloc extends Bloc<OperationsEvent, OperationsState> {
       OperationsFilterChanged event,
       Emitter<OperationsState> emit,
       ) {
-    emit(state.copyWith(filter: event.filter));
+    // itt most nincs semmi, de ha lenne működő filter akkor lenne
   }
 }

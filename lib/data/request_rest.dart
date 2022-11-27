@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
 
-import 'json_parser.dart';
+import 'rest_parsers/json_parser.dart';
 
 class RequestREST {
   final String endpoint;
-  final Map<String, String> data;
+  final Map<String, dynamic> data;
 
   const RequestREST({
     required this.endpoint,
@@ -16,18 +16,33 @@ class RequestREST {
       baseUrl: "INSERT URL HERE",
       connectTimeout: 3000,
       receiveTimeout: 3000,
-      //TODO: any headers?
+      headers: <String, String>{
+        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiY2xpZW50SUQiOiJDbGllbnQxIiwicmVnaXN0cmF0aW9uX2RhdGUiOiIyMDIyLTExLTI1VDIwOjI3OjA4Ljk4OTQ0MiIsInRva2VuIjoiIn0.-tGJ2yEJka_h4Dd3VFZzVXkktqt1kmCSBWG9P2oRWpk"
+      }
     )
   );
 
-  Future<T> executeGet<T>(JsonParser<T> parser) async {
+  static const httpOK = 200;
+
+  Future<T?> executeGet<T>(JsonParser<T> parser) async {
     final response = await _client.get<String>(endpoint);
-    return parser.parseFromJson(response.data);
+    if (response.statusCode == httpOK) {
+      return parser.parseFromJson(response.data!);
+    }
+    return null;
   }
 
-  Future<T> executePost<T>(JsonParser<T> parser) async {
+  Future<void> executePost<T>(JsonParser<T> parser) async {
     final formData = FormData.fromMap(data);
-    final response = await _client.post<String>(endpoint, data: formData);
-    return parser.parseFromJson(response.data);
+    await _client.post<String>(endpoint, data: formData);
+  }
+
+  Future<void> executePut<T>(JsonParser<T> parser) async {
+    final formData = FormData.fromMap(data);
+    await _client.put<String>(endpoint, data: formData);
+  }
+
+  Future<void> executeDelete<T>(JsonParser<T> parser) async {
+    await _client.delete<String>(endpoint);
   }
 }

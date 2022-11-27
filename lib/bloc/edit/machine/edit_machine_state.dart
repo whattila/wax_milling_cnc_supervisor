@@ -4,6 +4,13 @@ import '../../../models/machine.dart';
 
 enum EditStatus {initial, loading, success, failure}
 
+extension EditStatusX on EditStatus {
+  bool get isLoadingOrSuccess => [
+    EditStatus.loading,
+    EditStatus.success,
+  ].contains(this);
+}
+
 class EditMachineState extends Equatable {
   const EditMachineState({
     this.initialMachine,
@@ -11,6 +18,8 @@ class EditMachineState extends Equatable {
     this.isActive = true,
     this.toolCondition = WornType.unworn
   });
+
+  bool get isNewMachine => initialMachine == null;
 
   final Machine? initialMachine;
   final EditStatus status;

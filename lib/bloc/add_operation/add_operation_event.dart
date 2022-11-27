@@ -7,21 +7,30 @@ class AddOperationEvent extends Equatable {
   List<Object?> get props => [];
 }
 
-class MachineSelectionChanged extends AddOperationEvent {
-  const MachineSelectionChanged({required this.index});
+class PressionChanged extends AddOperationEvent {
+  const PressionChanged({required this.pression});
 
-  final int index;
+  final double pression;
 
   @override
-  List<Object?> get props => [index];
+  List<Object?> get props => [pression];
+}
+
+class VelocityChanged extends AddOperationEvent {
+  const VelocityChanged({required this.velocity});
+
+  final double velocity;
+
+  @override
+  List<Object?> get props => [velocity];
 }
 
 class OperationSubmitted extends AddOperationEvent {
-  const OperationSubmitted({required this.cuttingVelocity, required this.operationPression});
+  const OperationSubmitted({required this.operationCode, required this.machineCode});
 
-  final double cuttingVelocity;
-  final double operationPression;
+  final String operationCode;
+  final String machineCode;
 
   @override
-  List<Object?> get props => [cuttingVelocity, operationPression];
+  List<Object?> get props => [operationCode, machineCode];
 }

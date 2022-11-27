@@ -1,15 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:wax_milling_cnc_supervisor/widget/home_page.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wax_milling_cnc_supervisor/data/rest_cnc_service.dart';
+import 'package:wax_milling_cnc_supervisor/widget/home/home_page.dart';
 
-void main() => runApp(const App());
+import 'app.dart';
 
-class App extends StatelessWidget {
-  const App({super.key});
+Future<void> main() {
+  return BlocOverrides.runZoned(
+        () async {
+      WidgetsFlutterBinding.ensureInitialized();
+      final cncServiceInterface = RESTCncService();
+      runApp(App(cncServiceInterface: cncServiceInterface));
+    },
+    blocObserver: AppBlocObserver(),
+  );
+}
+
+class AppBlocObserver extends BlocObserver{
+  @override
+  void onTransition(Bloc bloc, Transition transition) {
+    super.onTransition(bloc, transition);
+    print(transition);
+  }
 
   @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: HomePage(),
-    );
+  void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
+    print(error);
+    super.onError(bloc, error, stackTrace);
   }
 }

@@ -4,25 +4,31 @@ import '../../../models/machine.dart';
 
 enum AddStatus {initial, loading, success, failure}
 
+extension AddStatusX on AddStatus {
+  bool get isLoadingOrSuccess => [
+    AddStatus.loading,
+    AddStatus.success,
+  ].contains(this);
+}
+
 class AddOperationState extends Equatable {
   const AddOperationState({
-    required this.status,
-    required this.candidateMachines,
-    required this.selectedMachineIndex
+    this.status = AddStatus.initial,
+    this.pression = 0.0,
+    this.velocity = 0.0,
   });
 
-  // TODO: a kódot nekünk kell megadni?
   final AddStatus status;
-  final List<Machine> candidateMachines;
-  final int selectedMachineIndex;
+  final double pression;
+  final double velocity;
 
-  AddOperationState copyWith({AddStatus? status, List<Machine>? candidateMachines, int? selectedMachineIndex}) =>
+  AddOperationState copyWith({AddStatus? status, double? pression, double? velocity}) =>
       AddOperationState(
         status: status ?? this.status,
-        candidateMachines: candidateMachines ?? this.candidateMachines,
-        selectedMachineIndex: selectedMachineIndex ?? this.selectedMachineIndex
+        pression:  pression ?? this.pression,
+        velocity: velocity ?? this.velocity,
       );
 
   @override
-  List<Object?> get props => [status, candidateMachines, selectedMachineIndex];
+  List<Object?> get props => [status, pression, velocity];
 }

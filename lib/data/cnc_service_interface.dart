@@ -11,11 +11,17 @@ abstract class CncServiceInterface {
 
   Future<void> deleteMachine(Machine machine);
 
-  Future<void> createOperation(Operation operation);
+  Future<void> createOperation(Operation operation, Machine selectedMachine);
 
   Stream<List<Operation>> getOperations();
 
-  Future<void> updateOperation(Operation operation);
+  Future<void> updateOperation(Operation operation, Machine selectedMachine);
 
   Future<void> deleteOperation(Operation operation);
+
+  Future<void> activateMachine(Machine machine);
+
+  Future<void> deactivateMachine(Machine machine);
+
+  Future<Machine> getMachineByCode(String code);
 }
