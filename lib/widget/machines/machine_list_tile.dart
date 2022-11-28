@@ -32,23 +32,25 @@ class MachineListTile extends StatelessWidget {
           color: Color(0xAAFFFFFF),
         ),
       ),
-      child: ListTile(
-        tileColor: machine.toolCondition == WornType.worn ? Colors.red : Colors.green,
-        onTap: onTap,
-        title: Text(
-          machine.machineCode,
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
+      child: Card(
+        child: ListTile(
+          tileColor: machine.toolCondition == WornType.worn ? Colors.red : Colors.green,
+          onTap: onTap,
+          title: Text(
+            machine.machineCode,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+          subtitle: Text(
+            machine.isActive ? 'Active' : 'Not active',
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+          trailing: IconButton(
+              onPressed: () => Navigator.of(context).push(EditMachineDialog.route(initialMachine: machine)),
+              icon: const Icon(Icons.mode_edit)
+          )
         ),
-        subtitle: Text(
-          machine.isActive ? 'Active' : 'Not active',
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-        ),
-        trailing: IconButton(
-            onPressed: () => Navigator.of(context).push(EditMachineDialog.route(initialMachine: machine)),
-            icon: const Icon(Icons.mode_edit)
-        )
       ),
     );
   }

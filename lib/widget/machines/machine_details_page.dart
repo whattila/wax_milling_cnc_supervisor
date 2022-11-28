@@ -41,36 +41,95 @@ class MachineDetailsPage extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 4, 16, 4),
-              child: Text(
-                'Condition: ${machine.toolCondition}',
-                style: TextStyle(
-                  fontSize: 30,
-                  color: machine.toolCondition == WornType.worn ? Colors.red : Colors.green,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
+              child: Row(
+                children: [
+                  const Text(
+                    'Condition: ',
+                    style: TextStyle(
+                      fontSize: 30,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  Text(
+                    machine.toolCondition.toString().split('.').last,
+                    style: TextStyle(
+                      fontSize: 30,
+                      color: machine.toolCondition == WornType.worn ? Colors.red : Colors.green,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ],
+              )
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 4, 16, 4),
-              child: Text(
-                'Active? ${machine.isActive ? 'Yes' : 'No'}',
-                style: TextStyle(
-                  fontSize: 30,
-                  color: machine.isActive ? Colors.green : Colors.red,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
+              child: Row(
+                children: [
+                  const Text(
+                    'Active? ',
+                    style: TextStyle(
+                      fontSize: 30,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  Text(
+                    machine.isActive ? 'Yes' : 'No',
+                    style: TextStyle(
+                      fontSize: 30,
+                      color: machine.isActive ? Colors.blue : Colors.black,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ],
+              )
             ),
             Padding(
               padding: const EdgeInsets.all(16),
-              child: Text(
-                'Is working now: ${machine.isWorking ? 'Yes' : 'No'}',
-                style: TextStyle(
-                  fontSize: 30,
-                  color: machine.isWorking ? Colors.green : Colors.red,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
+              child: Row(
+                children: [
+                  const Text(
+                    'Is working now? ',
+                    style: TextStyle(
+                      fontSize: 30,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  Text(
+                    machine.isWorking ? 'Yes' : 'No',
+                    style: const TextStyle(
+                      fontSize: 30,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ],
+              )
+            ),
+            Padding(
+                padding: const EdgeInsets.all(16),
+                child: Row(
+                  children: [
+                    const Text(
+                      'Activation time: ',
+                      style: TextStyle(
+                        fontSize: 30,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    Text(
+                      machine.activationDate.toString().split('.').first,
+                      style: const TextStyle(
+                        fontSize: 30,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ],
+                )
             ),
           ],
         ),

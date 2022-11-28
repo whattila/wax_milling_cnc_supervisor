@@ -48,6 +48,18 @@ class Machine extends Equatable {
           toolConditionPredicted: WornType.values[machineBase.tool_condition_predicted ?? 1]
         );
 
+  Machine copyWith ({int? id, String? machineCode, String? machineDescription, DateTime? activationDate, bool? isActive, bool? isWorking, WornType? toolCondition, WornType? toolConditionPredicted}) =>
+      Machine(
+        id: id ?? this.id,
+        machineCode: machineCode ?? this.machineCode,
+        machineDescription: machineDescription ?? this.machineDescription,
+        activationDate: activationDate ?? this.activationDate,
+        isActive: isActive ?? this.isActive,
+        isWorking: isWorking ?? this.isWorking,
+        toolCondition: toolCondition ?? this.toolCondition,
+        toolConditionPredicted: toolConditionPredicted ?? this.toolConditionPredicted
+      );
+
   @override
   List<Object?> get props => [id, machineCode, machineDescription, activationDate, isActive, isWorking, toolCondition, toolConditionPredicted];
 }

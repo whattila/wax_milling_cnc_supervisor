@@ -27,11 +27,17 @@ class HomePage extends StatelessWidget {
                       title:const Text('Add machine or operation'),
                       children: <Widget>[
                         SimpleDialogOption(
-                          onPressed: () => Navigator.of(context).push(EditMachineDialog.route()),
+                          onPressed: () {
+                            Navigator.pop(context);
+                            Navigator.of(context).push(EditMachineDialog.route());
+                            },
                           child:const Text('Add machine'),
                         ),
                         SimpleDialogOption(
-                          onPressed: () => Navigator.of(context).push(AddOperationDialog.route()),
+                          onPressed: () {
+                            Navigator.pop(context);
+                            Navigator.of(context).push(AddOperationDialog.route());
+                          },
                           child: const Text('Add operation'),
                         ),
                       ],
@@ -43,7 +49,7 @@ class HomePage extends StatelessWidget {
             },
             backgroundColor: Colors.deepOrange,
             foregroundColor: Colors.white,
-            child: const Icon(Icons.upload),
+            child: const Icon(Icons.add),
           ),
           body: const TabBarView(
             children: <Widget>[

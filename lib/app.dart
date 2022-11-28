@@ -26,6 +26,10 @@ class AppView extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         primarySwatch: Colors.orange,
+          sliderTheme: const SliderThemeData(
+            showValueIndicator: ShowValueIndicator.always,
+            valueIndicatorColor: Colors.grey
+          )
       ),
       home: const HomePage()
     );

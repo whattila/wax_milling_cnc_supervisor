@@ -33,7 +33,7 @@ class OperationDetailsPage extends StatelessWidget {
               child: Text(
                 'Cutting velocity: ${operation.cuttingVelocity}',
                 style: const TextStyle(
-                  fontSize: 25,
+                  fontSize: 30,
                   color: Colors.black,
                   fontWeight: FontWeight.w400,
                 ),

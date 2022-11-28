@@ -142,7 +142,7 @@ class PressionRow extends StatelessWidget {
             value: pression,
             min: AddOperationBloc.pressionMinValue,
             max: AddOperationBloc.pressionMaxValue,
-            label: "${pression.toString()} Bar",
+            label: "${pression.roundToDouble().toString()} Bar",
             onChanged: (value) {
               context.read<AddOperationBloc>().add(PressionChanged(pression: value));
             },
@@ -171,7 +171,7 @@ class VelocityRow extends StatelessWidget {
             value: velocity,
             min: AddOperationBloc.velocityMinValue,
             max: AddOperationBloc.velocityMaxValue,
-            label: "${velocity.toString()} mmps",
+            label: "${velocity.roundToDouble().toString()} mmps",
             onChanged: (value) {
               context.read<AddOperationBloc>().add(VelocityChanged(velocity: value));
             },

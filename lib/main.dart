@@ -4,12 +4,13 @@ import 'package:wax_milling_cnc_supervisor/data/rest_cnc_service.dart';
 import 'package:wax_milling_cnc_supervisor/widget/home/home_page.dart';
 
 import 'app.dart';
+import 'data/test_cnc_service.dart';
 
 Future<void> main() {
   return BlocOverrides.runZoned(
         () async {
       WidgetsFlutterBinding.ensureInitialized();
-      final cncServiceInterface = RESTCncService();
+      final cncServiceInterface = TestCncService();
       runApp(App(cncServiceInterface: cncServiceInterface));
     },
     blocObserver: AppBlocObserver(),

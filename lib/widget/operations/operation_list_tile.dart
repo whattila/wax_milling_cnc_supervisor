@@ -31,14 +31,16 @@ class OperationListTile extends StatelessWidget {
           color: Color(0xAAFFFFFF),
         ),
       ),
-      child: ListTile(
-        onTap: onTap,
-        title: Text(
-          operation.operationCode,
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
+      child: Card(
+        child: ListTile(
+          onTap: onTap,
+          title: Text(
+            operation.operationCode,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+          trailing: onTap == null ? null : const Icon(Icons.chevron_right),
         ),
-        trailing: onTap == null ? null : const Icon(Icons.chevron_right),
       ),
     );
   }

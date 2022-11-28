@@ -38,6 +38,19 @@ class Operation extends Equatable {
           operationFinishedPrediction: operationBase.operation_finished_prediction ?? true
         );
 
+  Operation copyWith ({int? id, String? operationCode, int? machineId, double? cuttingVelocity, double? operationPression, DateTime? operationStart, DateTime? operationEnd, bool? operationFinished, bool? operationFinishedPrediction}) =>
+      Operation(
+        id: id ?? this.id,
+        operationCode: operationCode ?? this.operationCode,
+        machineId: machineId ?? this.machineId,
+        cuttingVelocity: cuttingVelocity ?? this.cuttingVelocity,
+        operationPression: operationPression ?? this.operationPression,
+        operationStart: operationStart ?? this.operationStart,
+        operationEnd: operationEnd ?? this.operationEnd,
+        operationFinished: operationFinished ?? this.operationFinished,
+        operationFinishedPrediction: operationFinishedPrediction ?? this.operationFinishedPrediction
+      );
+
   @override
   List<Object?> get props =>
       [

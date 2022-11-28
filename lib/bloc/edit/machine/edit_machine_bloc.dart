@@ -71,7 +71,8 @@ class EditMachineBloc extends Bloc<EditMachineEvent, EditMachineState> {
     }
 
     try {
-      await _cncServiceInterface.createMachine(machine);
+      state.isNewMachine ? 
+        await _cncServiceInterface.createMachine(machine) : await _cncServiceInterface.updateMachine(machine);
       emit(state.copyWith(status: EditStatus.success));
     } catch (e) {
       emit(state.copyWith(status: EditStatus.failure));
